@@ -1,7 +1,7 @@
 var express = require('express')
 var app = express()
 
-app.get('/auth', (req,res) => {
+app.get('/', (req,res) => {
   var status = req.query.status
   switch (status) {
     case "log_pass":
