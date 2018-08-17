@@ -33,9 +33,7 @@ app.get('/auth', (req,res) => {
           default:
             // I get token!
             getList(function(json, token){
-              //console.log(json);
               var string = "<h2>Список удаленных/забаненных друзей: </h2><br>";
-              //console.log(json.response);
               for (var i = 0; i < json.response.items.length; i++) {
                 if(json.response.items[i].deactivated){
                   string = string + "id: " + json.response.items[i].id + " name: " + json.response.items[i].first_name + " " + json.response.items[i].last_name + "<a target='_blank' href='https://vk.com/id"+json.response.items[i].id+"'>Ссылка</a><a style='margin-left:20px' target='_blank' href='https://api.vk.com/method/friends.delete?v=5.80&user_id="+json.response.items[i].id+"&access_token="+token+"'>Удалить из друзей</a><br>"
@@ -53,9 +51,7 @@ app.get('/auth', (req,res) => {
       var vktoken = require('vk-token-FIXED')
       vktoken.twoStep(response, code, function(token, error){
         getList(function(json, token){
-          //console.log(json);
           var string = "<h2>Список удаленных/забаненных друзей: </h2><br>";
-          //console.log(json.response);
           for (var i = 0; i < json.response.items.length; i++) {
             if(json.response.items[i].deactivated){
               string = string + "id: " + json.response.items[i].id + " name: " + json.response.items[i].first_name + " " + json.response.items[i].last_name + "<a target='_blank' href='https://vk.com/id"+json.response.items[i].id+"'>Ссылка</a><a style='margin-left:20px' target='_blank' href='https://api.vk.com/method/friends.delete?v=5.80&user_id="+json.response.items[i].id+"&access_token="+token+"'>Удалить из друзей</a><br>"
@@ -173,10 +169,6 @@ function getUserId(callback, token) {
     request.write("")
     request.end();
 }
-//getList("4cb9f0ad2100395565e191d552a6df80cedeab2575f955c5e74f1a5d46de87b44857e9dcb18b9d85162d4");
-app.get('/getlist', (req, res) => {
-  res.send('yo')
-})
 
 app.listen(1338, function(){
   console.log('Server listening on port 1338');
